@@ -1,0 +1,35 @@
+﻿@model LoginModel
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+    <main class="flex">
+        <div class="formflex">
+            <h2>Log In</h2>
+
+            <div class="text-danger" asp-validation-summary="All"></div>
+
+            <form asp-action="Login" method="post">
+                <input type="hidden" name="returnUrl" value="@ViewBag.returnUrl" />
+                <div class="form-group">
+                    <label asp-for="Email"></label>
+                    <input asp-for="Email" class="input-control" />
+                </div>
+                <div class="form-group">
+                    <label asp-for="Password"></label>
+                    <input asp-for="Password" class="input-control" />
+                </div>
+                <button class="btn" type="submit">Log In</button>
+            </form>
+        </div>
+        @section Menu {
+            <li class="toggle"><a href="#"><i class="fa fa-bars"></i> Menu</a></li>
+            <li class="item"><a asp-controller="Home" asp-action="Index">Home</a></li>
+            <li class="item"><a asp-controller="Home" asp-action="Bio">Bio</a></li>
+            <li class="item"><a asp-controller="Chinesepainting" asp-action="Index">Exhibits</a></li>
+            <li class="item"><a asp-controller="Home" asp-action="Info">Info</a></li>
+            <li class="item"><a asp-controller="Home" asp-action="Custom">Custom Art</a></li>
+            <li class="item"><a asp-controller="Home" asp-action="Contact">Contact</a></li>
+            <li class="item"><a asp-controller="Cart" asp-action="Index">Shopping Cart</a></li>
+        }
+    </main>

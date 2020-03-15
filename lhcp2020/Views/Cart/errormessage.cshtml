@@ -1,0 +1,26 @@
+﻿@{
+    ViewBag.Title = "Error Message";
+}
+
+<main>
+    <h2>Error Message</h2>
+    <p>
+        Please See Below For Details:
+    </p>
+    <p>
+        Each of our paintings is a <strong>one of a kind original</strong>.
+        If you are interested in obtaining additional or similar pieces, you may place
+        a <strong>custom order</strong>.
+    </p>
+    <p><a asp-controller="Cart" asp-action="Index">Back to Cart</a></p>
+</main>
+@section Menu {
+    <li class="toggle"><a href="#"><i class="fa fa-bars"></i> Menu</a></li>
+    <li class="item"><a asp-controller="Home" asp-action="Index">Home</a></li>
+    <li class="item"><a asp-controller="Home" asp-action="Bio">Bio</a></li>
+    <li class="item"><a asp-controller="Chinesepainting" asp-action="Index">Exhibits</a></li>
+    <li class="item"><a asp-controller="Home" asp-action="Info">Info</a></li>
+    <li class="item"><a asp-controller="Home" asp-action="Custom">Custom Art</a></li>
+    <li class="item"><a asp-controller="Home" asp-action="Contact">Contact</a></li>
+    <li class="item"><a asp-controller="Cart" asp-action="Index">Shopping Cart</a></li>
+}

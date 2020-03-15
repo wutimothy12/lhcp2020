@@ -1,0 +1,59 @@
+﻿
+<main>
+    <div id="mainContent">
+        <h2>Custom Art</h2>
+        <p>As you view the many fine Chinese paintings of Mr. Wu, imagine the creative things you might do to produce the perfect effect you seek in your home or office. Mr. Wu will be happy to accommodate you. Use the examples below to stimulate your imagination.</p>
+        <p>Below you will see the stunning lampshade produced by Sycamore using one of Mr. Wu’s Chinese paintings. Or, imagine one of his paintings as a mural. If you have a scene in mind, such as the Great Wall of China, Mr. Wu can produce exactly what you want. At other times it may be as simple as asking Mr. Wu to enlarge one of his paintings you find on the website.</p>
+        <hr class="hr" />
+        <div class="custom">
+            <span class="img-wrapper"><img src="~/i/Esthetic Painted Panel Lamp A.jpg" width="200" height="288" /></span>
+            <span class="img-wrapper"><img src="~/i/Esthetic Painted Panel Lamp B.jpg" width="200" height="288" /></span>
+            <span class="img-wrapper"><img src="~/i/Esthetic Painted Panel Lamp C.jpg" width="200" height="288" /></span>
+            <p>Sycamore is a manufacturer of lamps and the owner loves Mr. Wu's Chinese Paintings. Together they produced this masterpiece.</p>
+            <h3>Description of lampshade</h3>
+            <p>There are two insets on this custom silk shade. Hand-sewn   into each inset are signed, original paintings on taffeta silk. </p>
+
+            <p>When the painted silk panels are back-lit, the paint   pigment becomes very vibrant and every small detail of the insects, leaves and   flowers illuminates bright and vivid. </p>
+            <p>
+                Vintage metal trims were chosen to   frame this beautiful artwork.
+            </p>
+            <p>
+                The shade is lined with a fiery taffeta   silk to produce a rich, warm glow when lit. A dark green-colored silk-backed   velvet covers the sides of this warm taffeta lining.
+            </p>
+            <p>
+                Hand beading,   customized for this shade, is patterned after an antique lampshade fringe. It is   4.5 inches at the longest point and 3.5 inches at the shortest point. All beads   are glass and individually strung.
+            </p>
+
+        </div>
+        <div class="custom">
+            <span class="img-wrapper"><img src="~/i/Shikishi-Wall.jpg" width="400" height="261" /></span><span class="img-wrapper"><img src="~/i/Credit-Closeup.jpg" width="400" height="172" /></span>
+            <p>If you ever go to Minneapolis, you may want to observe this large Chinese art mural, found in the lobby of a luxury apartment building called <a href="http://muralsoflynlake.com/index.html">The Murals</a>.</p>
+
+            <p>Lin Hua’s exquisite Shikishi painting was discovered during an online search for botanical artwork. They were so impressed they wanted to showcase the work by obtaining licensing rights to produce a one-of-a-kind mural for the project.  </p>
+        </div>
+        <div class="custom">
+            <span class="img-wrapper"><img src="~/i/GreatWall.jpg" width="400" height="305" /></span>
+            <p>While vacationing in China, a couple fell in love with the Great Wall and requested this custom painting by Mr. Wu.</p>
+        </div>
+        <div class="custom">
+            <span class="img-wrapper"><img src="~/i/IMG_0062_B.jpg" width="315" height="400" /></span>
+            <p>This customer loved this landscape painting but needed to increase the size from 9&quot; x 12&quot; to 27&quot; x 30&quot;.</p>
+        </div>
+    </div>
+</main>
+@section Menu {
+    <li class="toggle"><a href="#"><i class="fa fa-bars"></i> Menu</a></li>
+    <li class="item"><a asp-controller="Home" asp-action="Index">Home</a></li>
+    <li class="item"><a asp-controller="Home" asp-action="Bio">Bio</a></li>
+    <li class="item"><a asp-controller="Chinesepainting" asp-action="Index">Exhibits</a></li>
+    <li class="item"><a asp-controller="Home" asp-action="Info">Info</a></li>
+    <li class="item"><a asp-controller="Home" asp-action="Custom" class="active">Custom Art</a></li>
+    <li class="item"><a asp-controller="Home" asp-action="Contact">Contact</a></li>
+    <li class="item"><a asp-controller="Cart" asp-action="Index">Shopping Cart</a></li>
+}
+<style>
+    .custom img {
+        max-width: 100%;
+        height: auto;
+}
+</style>

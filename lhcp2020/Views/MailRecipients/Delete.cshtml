@@ -1,0 +1,47 @@
+﻿@model MailRecipient
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+    <main>
+        <h2>Delete</h2>
+        <h3>Are you sure you want to delete this?</h3>
+        <div>
+            <h4>MailRecipient</h4>
+            <hr />
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.UserName)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.UserName)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Email)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Email)
+                </dd>
+            </dl>
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="form-actions no-color">
+                    <input type="submit" value="Delete" class="btn btn-default" /> |
+                    @Html.ActionLink("Back to List", "Index")
+                </div>
+            }
+        </div>
+        @section Menu {
+            <li class="toggle"><a href="#"><i class="fa fa-bars"></i> Menu</a></li>
+            <li class="item"><a asp-controller="Home" asp-action="Index">Home</a></li>
+            <li class="item"><a asp-controller="Home" asp-action="Bio">Bio</a></li>
+            <li class="item"><a asp-controller="Chinesepainting" asp-action="Index">Exhibits</a></li>
+            <li class="item"><a asp-controller="Home" asp-action="Info">Info</a></li>
+            <li class="item"><a asp-controller="Home" asp-action="Custom">Custom Art</a></li>
+            <li class="item"><a asp-controller="Home" asp-action="Contact">Contact</a></li>
+            <li class="item"><a asp-controller="Cart" asp-action="Index">Shopping Cart</a></li>
+        }
+    </main>
+

@@ -1,0 +1,13 @@
+Hello <% UserName %>,
+
+Thank you for registering your email address with our club.  
+We will notify you periodically of new products and promotions.
+For all promotional sales,you will recieve promotion codes to 
+recieve discounts on paintings.
+
+We appreciate your interest in our art work.  
+
+LHChinesepaintings.com
+206-963-1889
+
+<p>Dear &lt;% UserName %&gt;,</p>

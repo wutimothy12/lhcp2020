@@ -1,0 +1,220 @@
+﻿@model PaintingsListViewModel
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, maximum-scale=1.0">
+    <title>@ViewBag.Title</title>
+    <meta name="description" content="Lin Hua's Chinese Paintings offers over 1500 original Chinese paintings on silk or rice paper. We specialize in landscapes, flowers, birds, fish and Custom paintings are also available. Free shipping in the USA and money- back guarantee." />
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="~/font-awesome-4.3.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="~/css/lhcp2019.css">
+    @await Html.PartialAsync("PagerSeo", Model)
+</head>
+<body class="flex">
+    <div id="top">
+        <div>@await Component.InvokeAsync("CartSummary") | <a class="scart" asp-controller="MailRecipients" asp-action="Create">Email Club <i class="fa fa-envelope-o" aria-hidden="true"></i></a></div>
+    </div>
+    <header>
+        <H1 id="logo">LIN HUA'S <span>Chinese Paintings</span></H1>
+    </header>
+    <main class="flex">
+        <div id="maintext">
+            <p>@ViewData["MainText"]</p>
+        </div>
+        <h2>@ViewBag.Title</h2>
+        <div id="gallery" style="display:none;">
+            @foreach (var p in Model.CPaintings)
+            {
+                <a asp-controller="Chinesepainting" asp-action="Detail" asp-route-id=@p.ProductID>
+                    <img alt=@p.ProductDescription
+                         src="~/@p.ImageUrl"
+                         data-image="~/@p.LargeImageUrl"
+                         data-description=@p.ProductDescription>
+                </a>
+            }
+
+
+        </div>
+        <div id="Pager">@await Html.PartialAsync("Pager", Model)</div>
+        <style>
+            ul.pagination {
+                display: inline-block;
+                padding: 0;
+                margin: 0;
+            }
+
+                ul.pagination li {
+                    display: inline;
+                }
+
+                    ul.pagination li a {
+                        color: black;
+                        float: left;
+                        padding: 8px 16px;
+                        text-decoration: none;
+                    }
+
+                        ul.pagination li a.active {
+                            background-color: #4CAF50;
+                            color: white;
+                        }
+
+                        ul.pagination li a:hover:not(.active) {
+                            background-color: #ddd;
+                        }
+
+            #Pager {
+                margin: 1em;
+            }
+
+            main.flex {
+                flex-direction: column;
+            }
+
+            #gallery {
+                order: 1;
+            }
+
+            #Pager {
+                order: 2;
+            }
+
+            #maintext {
+                order: 3;
+            }
+
+            h2 {
+                margin-bottom: 1em;
+            }
+        </style>
+
+    </main>
+    <nav>
+        <ul class="menu">
+            <li class="toggle"><a href="#"><i class="fa fa-bars"></i> Menu</a></li>
+            <li class="item"><a asp-controller="Home" asp-action="Index">Home</a></li>
+            <li class="item"><a asp-controller="Home" asp-action="Bio">Bio</a></li>
+            <li class="item"><a asp-controller="Chinesepainting" asp-action="Index" class="active">Exhibits</a></li>
+            <li class="item"><a asp-controller="Home" asp-action="Info">Info</a></li>
+            <li class="item"><a asp-controller="Home" asp-action="Custom">Custom Art</a></li>
+            <li class="item"><a asp-controller="Home" asp-action="Contact">Contact</a></li>
+            <li class="item"><a asp-controller="Cart" asp-action="Index">Shopping Cart</a></li>
+
+        </ul>
+        <div class="buttonOver">
+            <a class="btn-open" href="#">Pantings </a>
+        </div>
+        <div class="overlay">
+            <div class="wrap">
+                <h3>Category Search for Chinese Paintings</h3>
+                <ul class="wrap-nav">
+                    <li><a asp-controller="Chinesepainting" asp-action="Index">All Paintings</a></li>
+                    @*<li><a asp-controller="Chinesepainting" asp-action="bydate">New Arrival ( Updated on July 21, 2010 )</a></li>*@
+                    <li><a asp-controller="Chinesepainting" asp-action="bycategory" asp-route-category="Landscape">Landscape Paintings</a></li>
+                    <li>
+                        <a asp-controller="Chinesepainting" asp-action="bycategory" asp-route-category="Plant">Plants Paintings</a>
+                        <ul>
+                            <li><a asp-controller="Chinesepainting" asp-action="byname" asp-route-name="Flower">Flowers</a></li>
+                            <li><a asp-controller="Chinesepainting" asp-action="byname" asp-route-name="Bamboo">Bamboo</a></li>
+                            <li><a asp-controller="Chinesepainting" asp-action="byname" asp-route-name="Fruit">Fruits</a></li>
+
+                        </ul>
+                    </li>
+                    <li>
+                        Prices
+                        <ul>
+                            <li><a asp-controller="Chinesepainting" asp-action="bypriceA">Under $50</a></li>
+                            <li><a asp-controller="Chinesepainting" asp-action="bypriceB">$50~$200</a></li>
+                            <li><a asp-controller="Chinesepainting" asp-action="bypriceC">$200~$500</a></li>
+                            <li><a asp-controller="Chinesepainting" asp-action="bypriceD">Over $500</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a asp-controller="Chinesepainting" asp-action="bycategory" asp-route-category="Animal">Animals Paintings</a>
+                        <ul>
+                            <li><a asp-controller="Chinesepainting" asp-action="byname" asp-route-name="Bird">Bird</a></li>
+                            <li><a asp-controller="Chinesepainting" asp-action="byname" asp-route-name="Dog">Dog</a></li>
+                            <li><a asp-controller="Chinesepainting" asp-action="byname" asp-route-name="Fish">Fish</a></li>
+                            <li><a asp-controller="Chinesepainting" asp-action="byname" asp-route-name="Rooster">Rooster</a></li>
+                            <li><a asp-controller="Chinesepainting" asp-action="byname" asp-route-name="Duck">Duck</a></li>
+                            <li><a asp-controller="Chinesepainting" asp-action="byname" asp-route-name="Eagle">Eagle</a></li>
+                            <li><a asp-controller="Chinesepainting" asp-action="byname" asp-route-name="Rabbit">Rabbit</a></li>
+                            <li><a asp-controller="Chinesepainting" asp-action="byname" asp-route-name="Frog">Frog</a></li>
+                            <li><a asp-controller="Chinesepainting" asp-action="byname" asp-route-name="Lamb">Lamb</a></li>
+                            <li><a asp-controller="Chinesepainting" asp-action="byname" asp-route-name="Buffalo">Buffalo</a></li>
+                            <li><a asp-controller="Chinesepainting" asp-action="byname" asp-route-name="Deer">Deer</a></li>
+                            <li><a asp-controller="Chinesepainting" asp-action="byname" asp-route-name="Crow">Crow</a></li>
+                            <li><a asp-controller="Chinesepainting" asp-action="byname" asp-route-name="Mouse">Mouse</a></li>
+                            <li><a asp-controller="Chinesepainting" asp-action="byname" asp-route-name="Cat">Cat</a></li>
+                            <li><a asp-controller="Chinesepainting" asp-action="byname" asp-route-name="Swallow">Swallow</a></li>
+                            <li><a asp-controller="Chinesepainting" asp-action="byname" asp-route-name="Tiger">Tiger</a></li>
+                            <li><a asp-controller="Chinesepainting" asp-action="byname" asp-route-name="Egret">Egret</a></li>
+                            <li><a asp-controller="Chinesepainting" asp-action="byname" asp-route-name="Parrot">Parrot</a></li>
+                            <li><a asp-controller="Chinesepainting" asp-action="byname" asp-route-name="Bat">Bat</a></li>
+                            <li><a asp-controller="Chinesepainting" asp-action="byname" asp-route-name="Bear">Bear</a></li>
+                            <li><a asp-controller="Chinesepainting" asp-action="byname" asp-route-name="Squirrel">Squirrel</a></li>
+                            <li><a asp-controller="Chinesepainting" asp-action="byname" asp-route-name="Pig">Pig</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        Material Types used in Paintings
+                        <ul>
+                            <li><a asp-controller="Chinesepainting" asp-action="bytype" asp-route-name="Silk">Silk</a></li>
+                            <li><a asp-controller="Chinesepainting" asp-action="bytype" asp-route-name="RicePaper">Rice Paper</a></li>
+                            <li><a asp-controller="Chinesepainting" asp-action="bytype" asp-route-name="Shikishi">Shikishi</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <aside class="hero"></aside>
+
+    <footer>
+        <small>
+            Copyright &copy; 2006~
+            <script>document.write(new Date().getFullYear())</script> | Masterpiece Studioz LLC | All rights reserved | <span>Tel:(206)963-1889 or <a asp-controller="Home" asp-action="Contact" asp-fragment="webForm">Email Us</a></span><br />
+            Powered by <a href="http://www.masterpiecestudioz.com" title="Certified Master Web Developer for small business and ecommerce.">Masterpiece Studioz</a>
+        </small>
+    </footer>
+    <script src="~/j/jquery-2.2.4.min.js">
+    </script>
+    <script src="~/j/lhcp2019.js">
+    </script>
+    <script type='text/javascript' src='~/unitegallery/js/unitegallery.js'></script>
+
+    <link rel='stylesheet' href='~/unitegallery/css/unite-gallery.css' type='text/css' />
+    <script type='text/javascript' src='~/unitegallery/themes/tiles/ug-theme-tiles.js'></script>
+    <script type="text/javascript">
+
+
+        jQuery(document).ready(function () {
+            //jQuery("#gallery").unitegallery();
+            jQuery("#gallery").unitegallery({
+                tile_as_link: true,
+                tile_enable_icons: false,
+                tiles_type: "justified"
+            });
+        });
+
+    </script>
+    <script type="text/javascript">
+
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-20493372-1']);
+        _gaq.push(['_trackPageview']);
+
+        (function () {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+
+    </script>
+</body>
+</html>

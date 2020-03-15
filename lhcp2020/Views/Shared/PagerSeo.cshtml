@@ -1,0 +1,25 @@
+﻿@model PaintingsListViewModel
+
+@{
+    var controller = ViewContext.RouteData.Values["Controller"];
+    var action = ViewContext.RouteData.Values["Action"];
+
+}
+@if (Model.PagingInfo.Pages.Any())
+{
+    @if (Model.PagingInfo.TotalPages > Model.PagingInfo.CurrentPage)
+    {
+        @if (Model.PagingInfo.CurrentPage > 1)
+        {
+            <link href="@(Model.PagingInfo.CurrentPage - 1)" rel="prev" />
+        }
+    }
+    @if (Model.PagingInfo.CurrentPage < Model.PagingInfo.TotalPages)
+    {
+        <link href="@(Model.PagingInfo.CurrentPage + 1)" rel="next" />
+    }
+    @if (Model.PagingInfo.CurrentPage == Model.PagingInfo.TotalPages)
+    {
+        <link href="@(Model.PagingInfo.CurrentPage - 1)" rel="prev" />
+    }
+}

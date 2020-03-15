@@ -1,0 +1,37 @@
+﻿@model CreateModel
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+    <main class="flex">
+        <div class="formflex">
+            <h2>Create User</h2>
+            <div asp-validation-summary=" All" class="text-danger"></div>
+            <form asp-action="Create" method="post">
+                <div class="form-group">
+                    <label asp-for="Name"></label>
+                    <input asp-for="Name" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label asp-for="Email"></label>
+                    <input asp-for="Email" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label asp-for="Password"></label>
+                    <input asp-for="Password" class="form-control" />
+                </div>
+                <button type="submit" class="button">Create</button>
+                <a asp-action="Index" class="button">Cancel</a>
+            </form>
+        </div>
+        @section Menu {
+            <li class="toggle"><a href="#"><i class="fa fa-bars"></i> Menu</a></li>
+            <li class="item"><a asp-controller="Home" asp-action="Index">Home</a></li>
+            <li class="item"><a asp-controller="Home" asp-action="Bio">Bio</a></li>
+            <li class="item"><a asp-controller="Chinesepainting" asp-action="Index">Exhibits</a></li>
+            <li class="item"><a asp-controller="Home" asp-action="Info">Info</a></li>
+            <li class="item"><a asp-controller="Home" asp-action="Custom">Custom Art</a></li>
+            <li class="item"><a asp-controller="Home" asp-action="Contact">Contact</a></li>
+            <li class="item"><a asp-controller="Cart" asp-action="Index">Shopping Cart</a></li>
+        }
+    </main>

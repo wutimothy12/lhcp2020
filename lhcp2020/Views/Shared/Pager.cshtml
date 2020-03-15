@@ -1,0 +1,44 @@
+﻿@model PaintingsListViewModel
+
+@{
+    var controller = ViewContext.RouteData.Values["Controller"];
+    var action = ViewContext.RouteData.Values["Action"];
+   
+}
+@if (Model.PagingInfo.Pages.Any())
+{
+    <div>
+        Paintings @Model.PagingInfo.FirstRowOnPage to @Model.PagingInfo.LastRowOnPage of @Model.PagingInfo.TotalItems total
+    </div>
+    <nav>
+        <ul class="pagination">
+            @if (Model.PagingInfo.CurrentPage > 1)
+            {
+
+                <li>
+                    <a asp-controller=@controller asp-action=@action>First</a>
+                </li>
+                <li>
+                    <a asp-controller=@controller asp-action=@action asp-route-page=@(Model.PagingInfo.CurrentPage - 1)>Previous</a>
+                </li>
+            }
+
+            @foreach (var p in Model.PagingInfo.Pages)
+            {
+                <li>
+                    <a class="@(p == Model.PagingInfo.CurrentPage ? "active" : "")" asp-controller=@controller asp-action=@action asp-route-page=@p>@p</a>
+                </li>
+            }
+
+            @if (Model.PagingInfo.CurrentPage < Model.PagingInfo.TotalPages)
+            {
+                <li>
+                    <a asp-controller=@controller asp-action=@action asp-route-page=@(Model.PagingInfo.CurrentPage + 1)>Next</a>
+                </li>
+                <li>
+                    <a asp-controller=@controller asp-action=@action asp-route-page=@(Model.PagingInfo.TotalPages)>Last</a>
+                </li>
+            }
+        </ul>
+    </nav>
+}

@@ -1,0 +1,31 @@
+﻿@{
+    ViewBag.Title = "Thank for Join Email Club";
+}
+    <main>
+        <h2>Hello @TempData["name"],</h2>
+
+        <p>
+            Your account was successfully created. A confirmation message
+            will immediately be sent to you.  If you
+            have failed to receive it, please contact us. (There is a
+            possibility that it could
+            be filtered to your junk mail.)
+        </p>
+        <p>
+            As a member of our Email Club, you will receive special offers and
+            information about new products. We look forward to serving
+            you.
+        </p>        
+    </main>
+        @section Menu {
+            <li class="toggle"><a href="#"><i class="fa fa-bars"></i> Menu</a></li>
+            <li class="item"><a asp-controller="Home" asp-action="Index">Home</a></li>
+            <li class="item"><a asp-controller="Home" asp-action="Bio">Bio</a></li>
+            <li class="item"><a asp-controller="Chinesepainting" asp-action="Index">Exhibits</a></li>
+            <li class="item"><a asp-controller="Home" asp-action="Info">Info</a></li>
+            <li class="item"><a asp-controller="Home" asp-action="Custom">Custom Art</a></li>
+            <li class="item"><a asp-controller="Home" asp-action="Contact">Contact</a></li>
+            <li class="item"><a asp-controller="Cart" asp-action="Index">Shopping Cart</a></li>
+        }
+    
+

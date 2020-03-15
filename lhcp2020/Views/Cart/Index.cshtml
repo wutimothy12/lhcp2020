@@ -1,0 +1,223 @@
+﻿@model CartIndexViewModel
+@{
+    ViewBag.Title = "Shopping Cart";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<main id="cartpage" class="flex">
+    <h2>Shopping Cart</h2>
+    <div class="mx">
+        <div id="headcart" class="flex">
+            <div class="grid-1 text-4xl font-bold">Image</div>
+            <div class="grid-2 font-bold">Product Detail</div>
+            <div class="grid-3 font-bold">Price</div>
+            <div class="grid-3"></div>
+            <div class="grid-3 font-bold">Total</div>
+        </div>
+        <ul>
+            @foreach (var line in Model.Cart.Lines)
+            {
+                <li class="flex">
+                    <div class="grid-1">
+                        <img src="~/@line.Product.ImageUrl">
+                    </div>
+                    <div class="grid-2">
+                        <div class="leading-normal mt-2">
+                            @line.Product.ProductName<br /># @line.Product.ProductID<br />@line.Product.ProductSize<br />@line.Product.ProductType<br /><span id="sold">@line.Product.Status</span><br />
+                        </div>
+                    </div>
+                    <div class="grid-3 text-center">@line.Product.UnitPrice.ToString("c")</div>
+                    <div class="grid-3 text-center">
+                        <form asp-action="RemoveFromCart" method="post">
+                            <input type="hidden" name="ProductID"
+                                   value="@line.Product.ProductID" />
+                            <input type="hidden" name="returnUrl"
+                                   value="@Model.ReturnUrl" />
+                            <button type="submit" class="button">Remove</button>
+                        </form>
+                    </div>
+                    <div class="grid-3 text-center">@((line.Quantity * line.Product.UnitPrice).ToString("c"))</div>
+                </li>
+            }
+        </ul>
+        <div class='some-page-wrapper'>
+            <div class='row'>
+                <div class='column colborder'>
+                    <div class='blue-column text-right font-bold'>
+                        Subtotal
+                    </div>
+                </div>
+                <!--    <div class='columnb'></div>-->
+                <div class='columnw colborder'>
+                    <div class='blue-column text-right'>
+                        @Model.Cart.SubTotal.ToString("c")
+                    </div>
+                </div>
+            </div>
+            <div id="jump" class='row'>
+                <div class='column'>
+                    <div class='blue-column text-right'>
+                        @if (Model.Cart.Tax == false)
+                        {
+                            <form asp-action="AddTax" method="post">
+                                <button type="submit" class="button">TAX (WASHINGTON ONLY)</button>
+                            </form>
+                        }
+                        else
+                        {
+                            <form asp-action="NoTax" method="post">
+                                <button type="submit" class="button">Romove Tax</button>
+                            </form>
+                        }
+                        Please click the Tax button if you are a resident of Washington State.
+                    </div>
+                </div>
+                <!--    <div class='columnb'></div>-->
+                <div class='columnw'>
+                    <div class="blue-column text-right">
+                        @if (Model.Cart.Tax == false)
+                        {<span style="color:lightgrey;">9.5%</span> }
+                        else
+                        { <span>9.5%</span>}
+                    </div>
+                </div>
+            </div>
+            <div class='row'>
+                <div class='column'>
+                    <div class='blue-column text-right'>
+                        @if (Model.Cart.Shipping == false)
+                        {
+                            <form asp-action="AddShipping" method="post">
+                                <button type="submit" class="button">INTERNATIONAL SHIPPING</button>
+                            </form>
+                        }
+                        else
+                        {
+                            <form asp-action="NoShipping" method="post">
+                                <button type="submit" class="button">Romove Shipping</button>
+                            </form>
+                        }
+                        Please click the Shipping button if your shipping address is outside the U.S.A..
+                    </div>
+                </div>
+
+                <div class='columnw'>
+                    <div class='blue-column text-right'>
+                        @if (Model.Cart.Shipping == false)
+                        {<span style="color:lightgrey;">$55.00</span> }
+                        else
+                        { <span>$55.00</span>}
+                    </div>
+                </div>
+            </div>
+            <div class='row'>
+                <div class='column'>
+                    <div class='blue-column text-right'>
+                        <form asp-action="Promotion" method="post">
+                            <input type="text" id="code" placeholder="PROMO CODE" name="code" style="height:3em;width:15em;">
+                            <button type="submit" class="button">APPLY</button>
+                        </form>
+                        If you received a promotion code that you would like to use with this purchase, enter it here.
+                    </div>
+                    @if (TempData["message"] != null)
+                    {
+                        <div class="text-right" style="color:Red;"> @Html.Encode(TempData["message"])</div>
+                    }
+                </div>
+
+                <div class='columnw'>
+                    <div class='blue-column text-right'>
+
+                    </div>
+                </div>
+            </div>
+            <div class='row'>
+                <div class='column colborder'>
+                    <div class='blue-column text-right font-bold'>
+                        Grand Total
+                    </div>
+                </div>
+
+                <div class='columnw colborder'>
+                    <div class='blue-column text-right'>
+                        @Model.Cart.Total.ToString("c")
+                    </div>
+                </div>
+            </div>
+            <div class='row'>
+                <div class='column'>
+                    <div id="rurl" class='blue-column text-right'>
+                        @if (Model.ReturnUrl != null)
+                        {
+                            <a href="@Model.ReturnUrl" class="button">CONTINUE SHOPPING</a>
+                        }
+                        else
+                        {
+                            <a asp-controller="Chinesepainting" asp-action="Index" class="button">CONTINUE SHOPPING</a>
+                        }
+                    </div>
+                </div>
+
+                <div class='columnw'>
+                    <div class='blue-column text-right'>
+                        <form id="Paypal" name="Paypal" action="https://www.paypal.com/cgi-bin/webscr" method="post">
+                            <input type="hidden" name="cmd" value="_cart" />
+                            <input type="hidden" name="upload" value="1" />
+                            <input type="hidden" name="business" value="sales@lhchinesepaintings.com" />
+                            @{ int count = 1;}
+                            @foreach (var line in Model.Cart.Lines)
+                            {
+                                @Html.Hidden("amount_" + count, line.Product.UnitPrice.ToString("N2"));
+                                @Html.Hidden("item_name_" + count, line.Product.ProductDescription);
+                                @Html.Hidden("item_number_" + count, line.Product.ProductID);
+                                @Html.Hidden("quantity_" + count, line.Product.Quantity);
+                                count++;
+                            }
+
+                            @Html.Hidden("amount_" + count, Model.Cart.ShippingAndTax.ToString("N2"))
+                            @Html.Hidden("item_name_" + count, "Shipping and Tax")
+                            <input type="hidden" name="discount_amount_cart" value="@Model.Cart.Discount.ToString("N2")" />
+                            <button type="submit" id="paypal-checkout-button" value="PayPal" class="button">Check Out</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div style="margin-top:2em;"><img src="https://www.paypalobjects.com/webstatic/en_US/i/buttons/cc-badges-ppmcvdam.png" alt="Buy now with PayPal" /></div>
+    </div>
+    <style>
+        #rurl a {
+            color: white;
+            font-weight: normal;
+            text-decoration: none;
+        }
+
+            #rurl a:visited {
+                color: white;
+            }
+    </style>
+</main>
+@section Menu {
+    <li class="toggle"><a href="#"><i class="fa fa-bars"></i> Menu</a></li>
+    <li class="item"><a asp-controller="Home" asp-action="Index">Home</a></li>
+    <li class="item"><a asp-controller="Home" asp-action="Bio">Bio</a></li>
+    <li class="item"><a asp-controller="Chinesepainting" asp-action="Index">Exhibits</a></li>
+    <li class="item"><a asp-controller="Home" asp-action="Info">Info</a></li>
+    <li class="item"><a asp-controller="Home" asp-action="Custom">Custom Art</a></li>
+    <li class="item"><a asp-controller="Home" asp-action="Contact">Contact</a></li>
+    <li class="item"><a asp-controller="Cart" asp-action="Index" class="active">Shopping Cart</a></li>
+}
+@section Scripts {
+    @if (TempData["Anchor"] != null)
+    {
+        <script>
+            $(document).ready(function () {
+            var anchor = '@TempData["Anchor"]';
+            $(this).scrollTop($('#' + anchor).position().top)
+        });
+           
+        </script>
+    }
+}
+
+

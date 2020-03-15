@@ -1,0 +1,122 @@
+﻿
+@{
+    Layout = "_Layout";
+}
+
+    <main class="flex">
+        <section class="colmain">
+            <h2>Biography</h2>
+
+            <p>
+                Lin-Hua Wu typifies the finest in the <strong>
+                    Lingnan
+                    School of Chinese	painting
+                </strong> that came to prominence in China in the early 1900s. It is a style
+                that combines traditional Chinese painting with elements of Western and
+                Japanese <strong>realist painting</strong>. Begun in Canton, it spread throughout China and
+                later Taiwan.
+            </p>
+            <p>
+                Wu was born in 1937 and grew up in Yunting, in Fukien Province in the southern
+                part of China near Hong Kong. In 1947 he and his family escaped communist
+                domination by fleeing to Taiwan. At age 13 Wu first observed a group students
+                painting with water colors and oil paints in a distinctive Western style and
+                became fascinated. With the help of an art teacher, he quickly discovered that
+                he had talent. His fascination with painting grew
+            </p>
+            <p>
+                After graduating from school in 1960, Wu began to shift from Western-style
+                painting to traditional Chinese painting. By 1962 he had saved some money and
+                began a five year period of studying under <strong>Chao Sung-Chuan</strong>, a fine painter and
+                an excellent teacher. Chao taught Wu the art of painting flowers and birds. In
+                1964 Wu began a three year period of studying under<strong> Huan Chun-Pi 黃君璧</strong>, an artist
+                famous throughout Taiwan for his beautiful landscapes. In 1965 he expanded his
+                training by joining <strong>Au Ho-Nien 歐豪年</strong>, the best known artist of his day in the Lingnan
+                style. With Au Ho-Nien, Wu perfected his painting of landscapes, flowers,
+                birds, and fish.
+            </p>
+            <p>
+                Wu learned his craft well and in 1966 was selected to participate in the 8th
+                National Art Exhibition. This was the first of many exhibitions that showed his
+                work over the next 24 years.
+            </p>
+            <p>
+                Wu became a professional painter in1961 when he joined <strong>
+                    China
+                    Pottery Arts
+                </strong> and
+                began painting pottery and water color landscapes in the Lingnan style. He
+                worked there continuously until 1981 when he visited the US to learn <strong>
+                    American
+                    sign language
+                </strong>. He also put on an art show in Los Angeles where his work was
+                well received. He returned to Taiwan in 1982 and rejoined China Pottery Arts
+                where he continued to work until 1990 when he emigrated to the United States.
+            </p>
+            <p>
+                Since coming to the United States Wu has continued to expand his repertoire and
+                has put together a strong portfolio of original designs. He now lives near
+                Seattle, Washington with his wife of 46 years. With his own studio he now
+                concentrates on landscape and floral compositions.
+            </p>
+        </section>
+        <aside class="colside">
+            <div class="biophoto">
+                <span class="img-wrapper"><img src="~/i/recentPicture.jpg" /></span>
+                <p>Lin-Hua Wa and his wife Ming Te W Wu. (2005)</p>
+            </div>
+            <p><span class="img-wrapper"><img src="~/Images/img008.jpg" /></span><span></span></p>
+            <div class="biophoto">
+                <span class="img-wrapper"><img src="~/Images/img001.jpg" width="180" height="130" /></span>
+                <p>The artists at China Pottery Arts. Lin Hua Wu is second from the right in the back row. (1968)</p>
+            </div>
+            <div class="biophoto">
+                <span class="img-wrapper"><img src="~/Images/img007.jpg" width="180" height="122" /></span>
+                <p>
+                    Guests frequently visited China Pottery Arts to observe the artists at work. Lin Hua is standing while painting the tall pottery piece.(1962)
+                </p>
+            </div>
+            <div class="biophoto">
+                <span class="img-wrapper"><img src="~/Images/img004.jpg" width="180" height="257" /></span>
+                <p>
+                    Painting pottery is exacting work. (1967)
+                </p>
+            </div>
+            <div class="biophoto">
+                <span class="img-wrapper"><img src="~/Images/img003.jpg" width="180" height="251" /></span>
+                <p>Traditional Chinese painting requires great concentration and a steady hand. (1967)</p>
+            </div>
+            <div class="biophoto">
+                <span class="img-wrapper"><img src="~/Images/img002.jpg" width="180" height="130" /></span>
+                <p>Lin Hua had nearly perfected his style of painting landscapes and flowers. (1971)</p>
+            </div>
+            <div class="biophoto">
+                <span class="img-wrapper"><img src="~/Images/img005.jpg" width="180" height="267" /></span>
+                <p>
+                    Painting a water color at his home studio. (1972)
+                </p>
+            </div>
+            <div class="biophoto">
+                <span class="img-wrapper"><img src="~/Images/img008.jpg" width="180" height="122" /></span>
+                <p>
+                    This large landscape was the coordinated effort of four artists, including Lin Hua Wu. (1977)
+                </p>
+            </div>
+            <div class="biophoto">
+                <span class="img-wrapper"><img src="~/Images/img006.jpg" width="180" height="122" /></span>
+                <p>
+                    Self-portrait. (1979)
+                </p>
+            </div>
+        </aside>
+        @section Menu {
+            <li class="toggle"><a href="#"><i class="fa fa-bars"></i> Menu</a></li>
+            <li class="item"><a asp-controller="Home" asp-action="Index">Home</a></li>
+            <li class="item"><a asp-controller="Home" asp-action="Bio">Bio</a></li>
+            <li class="item"><a asp-controller="Chinesepainting" asp-action="Index">Exhibits</a></li>
+            <li class="item"><a asp-controller="Home" asp-action="Info">Info</a></li>
+            <li class="item"><a asp-controller="Home" asp-action="Contact">Contact</a></li>
+            <li class="item"><a asp-controller="Cart" asp-action="Index">Shopping Cart</a></li>
+        }
+    </main>
+

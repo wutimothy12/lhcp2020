@@ -1,0 +1,151 @@
+﻿@model ContactViewModel
+@{
+    ViewData["description"] = "We are a U.S. based Washington State company offering the largest selection of original Chinese paintings by Lin Hua Wu.	To place a custom order or to contact us with any questions you may have about our paintings or our company";
+}
+<style>
+    fieldset {
+        margin: 1em 0;
+        padding: 1em;
+        border: 1px solid #ccc;
+        background: #f8f8f8;
+        display:block;
+        width:90%;
+    }
+
+    legend {
+        font-weight: bold;
+        margin-bottom: 2em;
+    }
+
+    #RadioButton1, #RadioButton2, #RadioButton3 {
+        margin-right: 1em;
+    }
+
+    .club {
+        border: 1px solid #ccc;
+        background: #f8f8f8;
+        width: 80%;
+        padding: .8em;
+    }
+    textarea {
+        width: 100%;
+  height: 150px;
+  padding: 12px 20px;
+  box-sizing: border-box;
+  vertical-align:top;
+    }
+</style>
+<main>
+    <h2>Contact</h2>
+    <p>
+        We are a U.S. based <strong>Washington State company</strong> offering the
+        largest selection of <strong>original Chinese paintings</strong> by<strong>
+            Lin Hua
+            Wu
+        </strong>.
+    </p>
+    <p>
+        To place a <strong>custom order</strong> or to contact us with any questions you
+        may have about our paintings or our company please contact us at:
+    </p>
+    <p>
+        <strong>Mailing Address</strong>:<br>
+        <a href="http://www.masterpiecestudioz.com">Masterpiese Studioz, LLC</a><br>
+        29325 19th PL S<br>
+        Federal Way, WA 98003<br>
+        USA
+    </p>
+    <p>
+        <strong>Telephone:</strong><br>
+        206.963.1889
+    </p>
+    <p class="club">
+        <strong>Join the Email Club:</strong><br />
+        Sign up for special offers, new products, and more. Join our <a asp-controller="MailRecipients" asp-action="Create">
+            <strong>
+                Email
+                Club
+            </strong>
+        </a>.
+    </p>
+    <p>
+        <strong>Email:</strong><br>
+        <a href="mailto:sales@lhchinesepaintings.com">sales@lhchinesepaintings.com</a><BR>
+        <a href="mailto:info@lhchinesepaintings.com">info@lhchinesepaintings.com</a><BR>
+        <A href="mailto:customorder@lhchinesepaintings.com">customorder@lhchinesepaintings.com</A>
+    </p>
+    <p>Or contact us through our WebForm</p>
+    <div id="UpdatePanel1">
+
+        <a name="webForm" id="webForm"></a><fieldset>
+            <legend>LHChinesePaintings WebForm</legend>
+
+            <p id="P1">To:</p>
+            <form method="post">
+                <p>
+                    <label>
+                        <input id="RadioButton1" type="radio" asp-for="Emaillist" value="sales@lhchinesepaintings.com" /><label for="RadioButton1">sales@lhchinesepaintings.com</label><br />
+                        <input id="RadioButton2" type="radio" asp-for="Emaillist" value="info@lhchinesepaintings.com" /><label for="RadioButton2">info@lhchinesepaintings.com</label></br>
+                        <input id="RadioButton3" type="radio" asp-for="Emaillist" value="customorder@lhchinesepaintings.com" /><label for="RadioButton3">customorder@lhchinesepaintings.com</label>
+                        <span asp-validation-for="Emaillist" style="color:red;"></span>
+
+                    </label>
+                </p>
+                <p>
+                    <label asp-for="Name">Name:</label>
+                    <input asp-for="Name" class="form-control" style="height:3em;width:15em;" />
+                    <span asp-validation-for="Name" class="text-muted"></span>
+                </p>
+                <p>
+                    <label asp-for="Email">Email:</label>
+                    <input asp-for="Email" class="form-control" style=" height: 3em; width: 15em;" />
+                    <span asp-validation-for="Email" class="text-muted"></span>
+                </p>
+                <p>
+
+                <p
+                    <label asp-for="Subject">Subject:</label>
+                    <input asp-for="Subject" class="form-control" style="height:3em;width:15em;" />
+                    <span asp-validation-for="Subject" class="text-muted"></span>
+                </p>
+                <p>
+                  
+                    <label asp-for="Message">Message:</label>
+                    <textarea asp-for="Message" class="form-control"></textarea>
+                    <span asp-validation-for="Message" class="text-muted"></span>
+                </p>
+                <p id="jump">
+                    <label>
+                        <input type="submit" class="button" value="Send" />
+                    </label>
+                </p>
+                <p>Status: @ViewBag.end</p>
+            </form>
+        </fieldset>
+       
+    </div>
+
+</main>
+@section Menu {
+    <li class="toggle"><a href="#"><i class="fa fa-bars"></i> Menu</a></li>
+    <li class="item"><a asp-controller="Home" asp-action="Index">Home</a></li>
+    <li class="item"><a asp-controller="Home" asp-action="Bio">Bio</a></li>
+    <li class="item"><a asp-controller="Chinesepainting" asp-action="Index">Exhibits</a></li>
+    <li class="item"><a asp-controller="Home" asp-action="Info">Info</a></li>
+    <li class="item"><a asp-controller="Home" asp-action="Custom">Custom Art</a></li>
+    <li class="item"><a asp-controller="Home" asp-action="Contact" class="active">Contact</a></li>
+    <li class="item"><a asp-controller="Cart" asp-action="Index">Shopping Cart</a></li>
+}
+@section Scripts {
+    @if (TempData["Anchor"] != null)
+    {
+        <script>
+            $(document).ready(function () {
+            var anchor = '@TempData["Anchor"]';
+            $(this).scrollTop($('#' + anchor).position().top)
+        });
+
+        </script>
+    }
+}
+

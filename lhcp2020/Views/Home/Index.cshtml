@@ -1,0 +1,648 @@
+﻿@{
+    Layout = null;
+}
+
+
+<!doctype html>
+<html class="no-js">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, maximum-scale=1.0">
+    <title>@ViewBag.Title</title>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="~/font-awesome-4.3.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="~/css/lhcp2019.css">
+</head>
+
+
+<body class="flex">
+    <div id=top>
+        <div>@await Component.InvokeAsync("CartSummary") |  <a class="scart" asp-controller="MailRecipients" asp-action="Create">Email Club <i class="fa fa-envelope-o" aria-hidden="true"></i></a></div>
+    </div>
+    <header>
+        <H1 id="logo">LIN HUA'S <span>Chinese Paintings</span></H1>
+    </header>
+    <!--<aside class="hero"></aside>-->
+
+    <main>
+        <div id="maintext">
+            <p>
+                We offer the largest selection of fine art paintings by respected Chinese artist Lin-Hua Wu. Each original watercolor is hand painted in
+                the <strong>Lingnan School of Painting style</strong> onto <strong>traditional silk, rice paper</strong> or contemporary <strong>
+                    Shikishi artboard
+                    material.
+                </strong> These one of a kind Chinese paintings will add a classic feel to any room of a house or office. <strong><a asp-controller="Home" asp-action="Info" asp-fragment="cp7">Custom Chinese paintings</a></strong> are also available. Prices begin at $45. <strong>Free shipping in the USA with a money-back guarantee.</strong>
+            </p>
+            <p>For ideas on how to request a custom Chinese painting on silk, rice paper, shikish, or special materials such as cloth or a vase that meets your exact desire <a asp-controller="Home" asp-action="Custom">Custom Arts</a>.</p>
+            <p>Sign up for special offers, new products, and more. Join our <a asp-controller="MailRecipients" asp-action="Create"><strong>Email Club</strong></a>.</p>
+            <hr class="hr" />
+        </div>
+        <div id="ChiesePaintngHistory">
+            <h2>Introduction to Chinese Painting on silk or rice paper</h2>
+            <p>
+                Chinese painting has become very popular in the Western world, particularly the United States. Chinese paintings are
+                known for their beautiful landscapes and paintings of mammals, birds, and fish. In Chinese painting there are two
+                basic techniques, “meticulous” or Gong-bi and “freehand” or Shui-mo. Meticulous is very detailed while freehand is
+                more impressionistic. Most Chinese consider landscape paintings as the top example of Chinese art, and many Westerners agree.
+            </p>
+            <p>
+                Traditional Chinese silk painting involves nearly the same technique as calligraphy, for which the Chinese are also famous. It is
+                produced with a brush dipped in black or colored ink and applied primarily to rice paper or silk.
+            </p>
+            <p>
+                Early Chinese silk paintings dating back to 400 B.C primarily depicted the human figure. Over time landscapes
+                and animals became more popular, but the human figure still plays an important role.
+            </p>
+            <p>
+                During the Tang Dynasty (618 – 907 A.D.) mountain paintings with waterfalls (shanshui) became very popular, as they are to
+                this day. The Chinese silk paintings were not attempts to perfectly depict the true appearance of nature, but to capture the emotion of nature.
+            </p>
+            <p>From the 1600s to the early 1900s many artists began to rebel against the more traditional rules of Chinese painting and started using a more free type of brushstroke. </p>
+            <p>
+                Among those who rebelled in the early 1900s included two brothers Gao Jianful and Gao Qifeng who developed the Lingnan style of Chinese silk painting. These two greatly
+                influenced Lin-Hua Wu’s paintings and he ultimately was trained by some of the early Lingnan masters.
+            </p>
+        </div>
+    </main>
+    <nav>
+        <ul class="menu">
+            <li class="toggle"><a href="#"><i class="fa fa-bars"></i> Menu</a></li>
+            <li class="item"><a asp-controller="Home" asp-action="Index" class="active">Home</a></li>
+            <li class="item"><a asp-controller="Home" asp-action="Bio">Bio</a></li>
+            <li class="item"><a asp-controller="Chinesepainting" asp-action="Index">Exhibits</a></li>
+            <li class="item"><a asp-controller="Home" asp-action="Info">Info</a></li>
+            <li class="item"><a asp-controller="Home" asp-action="Custom">Custom Art</a></li>
+            <li class="item"><a asp-controller="Home" asp-action="Contact">Contact</a></li>
+            <li class="item"><a asp-controller="Cart" asp-action="Index">Shopping Cart</a></li>
+
+        </ul>
+        <div class="buttonOver">
+            <a class="btn-open" href="#">PAINTINGS </a>
+        </div>
+        <div class="overlay">
+            <div class="wrap">
+                <h3>Category Search for Chinese Paintings</h3>
+                <ul class="wrap-nav">
+                    <li><a asp-controller="Chinesepainting" asp-action="Index">All Paintings</a></li>
+                    @*<li><a asp-controller="Chinesepainting" asp-action="bydate">New Arrival ( Updated on July 21, 2010 )</a></li>*@
+                    <li><a asp-controller="Chinesepainting" asp-action="bycategory" asp-route-category="Landscape">Landscape Paintings</a></li>
+                    <li>
+                        <a asp-controller="Chinesepainting" asp-action="bycategory" asp-route-category="Plant">Plants Paintings</a>
+                        <ul>
+                            <li><a asp-controller="Chinesepainting" asp-action="byname" asp-route-name="Flower">Flowers</a></li>
+                            <li><a asp-controller="Chinesepainting" asp-action="byname" asp-route-name="Bamboo">Bamboo</a></li>
+                            <li><a asp-controller="Chinesepainting" asp-action="byname" asp-route-name="Fruit">Fruits</a></li>
+
+                        </ul>
+                    </li>
+                    <li>
+                        Prices
+                        <ul>
+                            <li><a asp-controller="Chinesepainting" asp-action="bypriceA">Under $50</a></li>
+                            <li><a asp-controller="Chinesepainting" asp-action="bypriceB">$50~$200</a></li>
+                            <li><a asp-controller="Chinesepainting" asp-action="bypriceC">$200~$500</a></li>
+                            <li><a asp-controller="Chinesepainting" asp-action="bypriceD">Over $500</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a asp-controller="Chinesepainting" asp-action="bycategory" asp-route-category="Animal">Animals Paintings</a>
+                        <ul>
+                            <li><a asp-controller="Chinesepainting" asp-action="byname" asp-route-name="Bird">Bird</a></li>
+                            <li><a asp-controller="Chinesepainting" asp-action="byname" asp-route-name="Dog">Dog</a></li>
+                            <li><a asp-controller="Chinesepainting" asp-action="byname" asp-route-name="Fish">Fish</a></li>
+                            <li><a asp-controller="Chinesepainting" asp-action="byname" asp-route-name="Rooster">Rooster</a></li>
+                            <li><a asp-controller="Chinesepainting" asp-action="byname" asp-route-name="Duck">Duck</a></li>
+                            <li><a asp-controller="Chinesepainting" asp-action="byname" asp-route-name="Eagle">Eagle</a></li>
+                            <li><a asp-controller="Chinesepainting" asp-action="byname" asp-route-name="Rabbit">Rabbit</a></li>
+                            <li><a asp-controller="Chinesepainting" asp-action="byname" asp-route-name="Frog">Frog</a></li>
+                            <li><a asp-controller="Chinesepainting" asp-action="byname" asp-route-name="Lamb">Lamb</a></li>
+                            <li><a asp-controller="Chinesepainting" asp-action="byname" asp-route-name="Buffalo">Buffalo</a></li>
+                            <li><a asp-controller="Chinesepainting" asp-action="byname" asp-route-name="Deer">Deer</a></li>
+                            <li><a asp-controller="Chinesepainting" asp-action="byname" asp-route-name="Crow">Crow</a></li>
+                            <li><a asp-controller="Chinesepainting" asp-action="byname" asp-route-name="Mouse">Mouse</a></li>
+                            <li><a asp-controller="Chinesepainting" asp-action="byname" asp-route-name="Cat">Cat</a></li>
+                            <li><a asp-controller="Chinesepainting" asp-action="byname" asp-route-name="Swallow">Swallow</a></li>
+                            <li><a asp-controller="Chinesepainting" asp-action="byname" asp-route-name="Tiger">Tiger</a></li>
+                            <li><a asp-controller="Chinesepainting" asp-action="byname" asp-route-name="Egret">Egret</a></li>
+                            <li><a asp-controller="Chinesepainting" asp-action="byname" asp-route-name="Parrot">Parrot</a></li>
+                            <li><a asp-controller="Chinesepainting" asp-action="byname" asp-route-name="Bat">Bat</a></li>
+                            <li><a asp-controller="Chinesepainting" asp-action="byname" asp-route-name="Bear">Bear</a></li>
+                            <li><a asp-controller="Chinesepainting" asp-action="byname" asp-route-name="Squirrel">Squirrel</a></li>
+                            <li><a asp-controller="Chinesepainting" asp-action="byname" asp-route-name="Pig">Pig</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        Material Types used in Paintings
+                        <ul>
+                            <li><a asp-controller="Chinesepainting" asp-action="bytype" asp-route-name="Silk">Silk</a></li>
+                            <li><a asp-controller="Chinesepainting" asp-action="bytype" asp-route-name="RicePaper">Rice Paper</a></li>
+                            <li><a asp-controller="Chinesepainting" asp-action="bytype" asp-route-name="Shikishi">Shikishi</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+    </nav>
+    <aside class="hero"></aside>
+    <aside id="paintingNav">
+        <div class="pn-ProductNav_Wrapper">
+            <nav id="pnProductNav" class="pn-ProductNav dragscroll">
+                <div id="pnProductNavContents" class="pn-ProductNav_Contents">
+                    <a asp-controller="Chinesepainting" asp-action="Index" class="pn-ProductNav_Link" aria-selected="true"><img src="~/i/AllPaintings2.jpg"></a>
+                    @*<a asp-controller="Chinesepainting" asp-action="bydate" class="pn-ProductNav_Link"><img src="~/i/NewArrival.jpg"></a>*@
+                    <a asp-controller="Chinesepainting" asp-action="bycategory" asp-route-category="Animal" class="pn-ProductNav_Link"><img src="~/i/Animal2.jpg"></a>
+                    <a asp-controller="Chinesepainting" asp-action="bycategory" asp-route-category="Landscape" class="pn-ProductNav_Link"><img src="~/i/Landscape2.jpg"></a>
+                    <a asp-controller="Chinesepainting" asp-action="byname" asp-route-name="Bamboo" class="pn-ProductNav_Link"><img src="~/i/Bamboo2.jpg"></a>
+                    <a asp-controller="Chinesepainting" asp-action="byname" asp-route-name="Eagle" class="pn-ProductNav_Link"><img src="~/i/eagle3.jpg"></a>
+                    <a asp-controller="Chinesepainting" asp-action="byname" asp-route-name="Horse" class="pn-ProductNav_Link"><img src="~/i/Horse2.jpg"></a>
+                    <a asp-controller="Chinesepainting" asp-action="byname" asp-route-name="Tiger" class="pn-ProductNav_Link"><img src="~/i/Tiger2.jpg"></a>
+                    <a asp-controller="Chinesepainting" asp-action="bycategory" asp-route-category="Plant" class="pn-ProductNav_Link"><img src="~/i/Plant2.jpg"></a>
+                    <a asp-controller="Chinesepainting" asp-action="byname" asp-route-name="Egret" class="pn-ProductNav_Link"><img src="~/i/Egret.jpg"></a>
+
+                    <span id="pnIndicator" class="pn-ProductNav_Indicator"></span>
+                </div>
+            </nav>
+            <button id="pnAdvancerLeft" class="pn-Advancer pn-Advancer_Left" type="button">
+                <img src="~/i/LHCP-Arrow-L.png" width="44" height="44">
+            </button>
+            <button id="pnAdvancerRight" class="pn-Advancer pn-Advancer_Right" type="button">
+                <img src="~/i/LHCP-Arrow-R.png" width="44" height="44">
+            </button>
+        </div>
+    </aside>
+    <footer>
+        <small>
+            Copyright &copy; 2006~
+            <script>document.write(new Date().getFullYear())</script> | Masterpiece Studioz LLC | All rights reserved | <span>Tel:(206)963-1889 or <a asp-controller="Home" asp-action="Contact" asp-fragment="webForm">Email Us</a></span><br />
+            Powered by <a href="http://www.masterpiecestudioz.com" title="Certified Master Web Developer for small business and ecommerce.">Masterpiece Studioz</a>
+        </small>
+    </footer>
+    <style type="text/css">
+        * {
+            box-sizing: inherit;
+        }
+
+        body.flex {
+            flex-direction: column;
+        }
+
+        div#top {
+            order: 1;
+        }
+
+        header {
+            order: 2;
+        }
+
+        nav {
+            order: 3;
+        }
+
+        aside.hero {
+            order: 4;
+        }
+
+        aside#paintingNav {
+            order: 4;
+        }
+
+        main {
+            order: 5;
+        }
+
+        footer {
+            order: 6;
+        }
+
+        .pn-ProductNav_Wrapper {
+            position: relative;
+            padding: 0 11px;
+            box-sizing: border-box;
+        }
+
+        .pn-ProductNav {
+            background-color: transparent;
+            /* Make this scrollable when needed */
+            overflow-x: auto;
+            /* We don't want vertical scrolling */
+            overflow-y: hidden;
+            /* For WebKit implementations, provide inertia scrolling */
+            -webkit-overflow-scrolling: touch;
+            /* We don't want internal inline elements to wrap */
+            white-space: nowrap;
+            /* If JS present, let's hide the default scrollbar */
+            /* positioning context for advancers */
+            position: relative;
+            font-size: 0;
+        }
+
+        .js .pn-ProductNav {
+            /* Make an auto-hiding scroller for the 3 people using a IE */
+            -ms-overflow-style: -ms-autohiding-scrollbar;
+            -ms-overflow-style: none;
+            /* Remove the default scrollbar for WebKit implementations */
+        }
+
+            .js .pn-ProductNav::-webkit-scrollbar {
+                display: none;
+            }
+
+        .pn-ProductNav::-webkit-scrollbar {
+            display: none;
+        }
+
+        .pn-ProductNav_Contents {
+            float: left;
+            -webkit-transition: -webkit-transform .2s ease-in-out;
+            transition: -webkit-transform .2s ease-in-out;
+            transition: transform .2s ease-in-out;
+            transition: transform .2s ease-in-out, -webkit-transform .2s ease-in-out;
+            position: relative;
+        }
+
+        .pn-ProductNav_Contents-no-transition {
+            -webkit-transition: none;
+            transition: none;
+        }
+
+        .pn-ProductNav_Link {
+            text-decoration: none;
+            color: #888;
+            font-size: 1.2rem;
+            font-family: -apple-system, sans-serif;
+            display: -webkit-inline-box;
+            display: -ms-inline-flexbox;
+            display: inline-flex;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+            min-height: 44px;
+            border: 1px solid transparent;
+            padding: 0 11px;
+        }
+
+            .pn-ProductNav_Link + .pn-ProductNav_Link {
+                border-left-color: #eee;
+            }
+
+            .pn-ProductNav_Link[aria-selected="true"] {
+                color: #111;
+            }
+        /*.pn-ProductNav_Link img { max-width: 100%; height: auto;}*/
+
+        .pn-Advancer {
+            /* Reset the button */
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            background: transparent;
+            padding: 0;
+            border: 0;
+            /* Now style it as needed */
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            /* Set the buttons invisible by default */
+            opacity: 0;
+            -webkit-transition: opacity .3s;
+            transition: opacity .3s;
+        }
+
+            .pn-Advancer:focus {
+                outline: 0;
+            }
+
+            .pn-Advancer:hover {
+                cursor: pointer;
+            }
+
+        .pn-Advancer_Left {
+            left: 0;
+        }
+
+        [data-overflowing="both"] ~ .pn-Advancer_Left, [data-overflowing="left"] ~ .pn-Advancer_Left {
+            opacity: 1;
+        }
+
+        .pn-Advancer_Right {
+            right: 0;
+        }
+
+        [data-overflowing="both"] ~ .pn-Advancer_Right, [data-overflowing="right"] ~ .pn-Advancer_Right {
+            opacity: 1;
+        }
+
+        .pn-Advancer_Icon {
+            width: 20px;
+            height: 44px;
+            fill: /*#bbb*/ black;
+        }
+
+        .pn-ProductNav_Indicator {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            height: 4px;
+            width: 100px;
+            background-color: transparent;
+            -webkit-transform-origin: 0 0;
+            transform-origin: 0 0;
+            -webkit-transition: background-color .2s ease-in-out, -webkit-transform .2s ease-in-out;
+            transition: background-color .2s ease-in-out, -webkit-transform .2s ease-in-out;
+            transition: transform .2s ease-in-out, background-color .2s ease-in-out;
+            transition: transform .2s ease-in-out, background-color .2s ease-in-out, -webkit-transform .2s ease-in-out;
+        }
+    </style>
+    <script src="~/j/jquery-2.2.4.min.js">
+    </script>
+    <script src="~/j/lhcp2019.js">
+    </script>
+    <script type="text/javascript">
+        var SETTINGS = {
+            navBarTravelling: false,
+            navBarTravelDirection: "",
+            navBarTravelDistance: 150
+        }
+
+        var colours = {
+            0: "#86710000",
+            1: "#7F420000",
+            2: "#99813D00",
+            3: "#40FEFF00",
+            4: "#14CC99",
+            5: "#00BAFF",
+            6: "#0082B2",
+            7: "#B25D7A",
+            8: "#00FF17",
+            9: "#006B49",
+            10: "#00B27A",
+            11: "#996B3D",
+            12: "#CC7014",
+            13: "#40FF8C",
+            14: "#FF3400",
+            15: "#ECBB5E",
+            16: "#ECBB0C",
+            17: "#B9D912",
+            18: "#253A93",
+            19: "#125FB9",
+        }
+
+        document.documentElement.classList.remove("no-js");
+        document.documentElement.classList.add("js");
+
+        // Out advancer buttons
+        var pnAdvancerLeft = document.getElementById("pnAdvancerLeft");
+        var pnAdvancerRight = document.getElementById("pnAdvancerRight");
+        // the indicator
+        var pnIndicator = document.getElementById("pnIndicator");
+
+        var pnProductNav = document.getElementById("pnProductNav");
+        var pnProductNavContents = document.getElementById("pnProductNavContents");
+
+        pnProductNav.setAttribute("data-overflowing", determineOverflow(pnProductNavContents, pnProductNav));
+
+        // Set the indicator
+        moveIndicator(pnProductNav.querySelector("[aria-selected=\"true\"]"), colours[0]);
+
+        // Handle the scroll of the horizontal container
+        var last_known_scroll_position = 0;
+        var ticking = false;
+
+        function doSomething(scroll_pos) {
+            pnProductNav.setAttribute("data-overflowing", determineOverflow(pnProductNavContents, pnProductNav));
+        }
+
+        pnProductNav.addEventListener("scroll", function () {
+            last_known_scroll_position = window.scrollY;
+            if (!ticking) {
+                window.requestAnimationFrame(function () {
+                    doSomething(last_known_scroll_position);
+                    ticking = false;
+                });
+            }
+            ticking = true;
+        });
+
+
+        pnAdvancerLeft.addEventListener("click", function () {
+            // If in the middle of a move return
+            if (SETTINGS.navBarTravelling === true) {
+                return;
+            }
+            // If we have content overflowing both sides or on the left
+            if (determineOverflow(pnProductNavContents, pnProductNav) === "left" || determineOverflow(pnProductNavContents, pnProductNav) === "both") {
+                // Find how far this panel has been scrolled
+                var availableScrollLeft = pnProductNav.scrollLeft;
+                // If the space available is less than two lots of our desired distance, just move the whole amount
+                // otherwise, move by the amount in the settings
+                if (availableScrollLeft < SETTINGS.navBarTravelDistance * 2) {
+                    pnProductNavContents.style.transform = "translateX(" + availableScrollLeft + "px)";
+                } else {
+                    pnProductNavContents.style.transform = "translateX(" + SETTINGS.navBarTravelDistance + "px)";
+                }
+                // We do want a transition (this is set in CSS) when moving so remove the class that would prevent that
+                pnProductNavContents.classList.remove("pn-ProductNav_Contents-no-transition");
+                // Update our settings
+                SETTINGS.navBarTravelDirection = "left";
+                SETTINGS.navBarTravelling = true;
+            }
+            // Now update the attribute in the DOM
+            pnProductNav.setAttribute("data-overflowing", determineOverflow(pnProductNavContents, pnProductNav));
+        });
+
+        pnAdvancerRight.addEventListener("click", function () {
+            // If in the middle of a move return
+            if (SETTINGS.navBarTravelling === true) {
+                return;
+            }
+            // If we have content overflowing both sides or on the right
+            if (determineOverflow(pnProductNavContents, pnProductNav) === "right" || determineOverflow(pnProductNavContents, pnProductNav) === "both") {
+                // Get the right edge of the container and content
+                var navBarRightEdge = pnProductNavContents.getBoundingClientRect().right;
+                var navBarScrollerRightEdge = pnProductNav.getBoundingClientRect().right;
+                // Now we know how much space we have available to scroll
+                var availableScrollRight = Math.floor(navBarRightEdge - navBarScrollerRightEdge);
+                // If the space available is less than two lots of our desired distance, just move the whole amount
+                // otherwise, move by the amount in the settings
+                if (availableScrollRight < SETTINGS.navBarTravelDistance * 2) {
+                    pnProductNavContents.style.transform = "translateX(-" + availableScrollRight + "px)";
+                } else {
+                    pnProductNavContents.style.transform = "translateX(-" + SETTINGS.navBarTravelDistance + "px)";
+                }
+                // We do want a transition (this is set in CSS) when moving so remove the class that would prevent that
+                pnProductNavContents.classList.remove("pn-ProductNav_Contents-no-transition");
+                // Update our settings
+                SETTINGS.navBarTravelDirection = "right";
+                SETTINGS.navBarTravelling = true;
+            }
+            // Now update the attribute in the DOM
+            pnProductNav.setAttribute("data-overflowing", determineOverflow(pnProductNavContents, pnProductNav));
+        });
+
+        pnProductNavContents.addEventListener(
+            "transitionend",
+            function () {
+                // get the value of the transform, apply that to the current scroll position (so get the scroll pos first) and then remove the transform
+                var styleOfTransform = window.getComputedStyle(pnProductNavContents, null);
+                var tr = styleOfTransform.getPropertyValue("-webkit-transform") || styleOfTransform.getPropertyValue("transform");
+                // If there is no transition we want to default to 0 and not null
+                var amount = Math.abs(parseInt(tr.split(",")[4]) || 0);
+                pnProductNavContents.style.transform = "none";
+                pnProductNavContents.classList.add("pn-ProductNav_Contents-no-transition");
+                // Now lets set the scroll position
+                if (SETTINGS.navBarTravelDirection === "left") {
+                    pnProductNav.scrollLeft = pnProductNav.scrollLeft - amount;
+                } else {
+                    pnProductNav.scrollLeft = pnProductNav.scrollLeft + amount;
+                }
+                SETTINGS.navBarTravelling = false;
+            },
+            false
+        );
+
+        // Handle setting the currently active link
+        pnProductNavContents.addEventListener("click", function (e) {
+            var links = [].slice.call(document.querySelectorAll(".pn-ProductNav_Link"));
+            links.forEach(function (item) {
+                item.setAttribute("aria-selected", "false");
+            })
+            e.target.setAttribute("aria-selected", "true");
+            // Pass the clicked item and it's colour to the move indicator function
+            moveIndicator(e.target, colours[links.indexOf(e.target)]);
+        });
+
+        // var count = 0;
+        function moveIndicator(item, color) {
+            var textPosition = item.getBoundingClientRect();
+            var container = pnProductNavContents.getBoundingClientRect().left;
+            var distance = textPosition.left - container;
+            var scroll = pnProductNavContents.scrollLeft;
+            pnIndicator.style.transform = "translateX(" + (distance + scroll) + "px) scaleX(" + textPosition.width * 0.01 + ")";
+            // count = count += 100;
+            // pnIndicator.style.transform = "translateX(" + count + "px)";
+
+            if (color) {
+                pnIndicator.style.backgroundColor = color;
+            }
+        }
+
+        function determineOverflow(content, container) {
+            var containerMetrics = container.getBoundingClientRect();
+            var containerMetricsRight = Math.floor(containerMetrics.right);
+            var containerMetricsLeft = Math.floor(containerMetrics.left);
+            var contentMetrics = content.getBoundingClientRect();
+            var contentMetricsRight = Math.floor(contentMetrics.right);
+            var contentMetricsLeft = Math.floor(contentMetrics.left);
+            if (containerMetricsLeft > contentMetricsLeft && containerMetricsRight < contentMetricsRight) {
+                return "both";
+            } else if (contentMetricsLeft < containerMetricsLeft) {
+                return "left";
+            } else if (contentMetricsRight > containerMetricsRight) {
+                return "right";
+            } else {
+                return "none";
+            }
+        }
+
+        (function (root, factory) {
+            if (typeof define === 'function' && define.amd) {
+                define(['exports'], factory);
+            } else if (typeof exports !== 'undefined') {
+                factory(exports);
+            } else {
+                factory((root.dragscroll = {}));
+            }
+        }(this, function (exports) {
+            var _window = window;
+            var _document = document;
+            var mousemove = 'mousemove';
+            var mouseup = 'mouseup';
+            var mousedown = 'mousedown';
+            var EventListener = 'EventListener';
+            var addEventListener = 'add' + EventListener;
+            var removeEventListener = 'remove' + EventListener;
+            var newScrollX, newScrollY;
+
+            var dragged = [];
+            var reset = function (i, el) {
+                for (i = 0; i < dragged.length;) {
+                    el = dragged[i++];
+                    el = el.container || el;
+                    el[removeEventListener](mousedown, el.md, 0);
+                    _window[removeEventListener](mouseup, el.mu, 0);
+                    _window[removeEventListener](mousemove, el.mm, 0);
+                }
+
+                // cloning into array since HTMLCollection is updated dynamically
+                dragged = [].slice.call(_document.getElementsByClassName('dragscroll'));
+                for (i = 0; i < dragged.length;) {
+                    (function (el, lastClientX, lastClientY, pushed, scroller, cont) {
+                        (cont = el.container || el)[addEventListener](
+                            mousedown,
+                            cont.md = function (e) {
+                                if (!el.hasAttribute('nochilddrag') ||
+                                    _document.elementFromPoint(
+                                        e.pageX, e.pageY
+                                    ) == cont
+                                ) {
+                                    pushed = 1;
+                                    lastClientX = e.clientX;
+                                    lastClientY = e.clientY;
+
+                                    e.preventDefault();
+                                }
+                            }, 0
+                        );
+
+                        _window[addEventListener](
+                            mouseup, cont.mu = function () { pushed = 0; }, 0
+                        );
+
+                        _window[addEventListener](
+                            mousemove,
+                            cont.mm = function (e) {
+                                if (pushed) {
+                                    (scroller = el.scroller || el).scrollLeft -=
+                                        newScrollX = (- lastClientX + (lastClientX = e.clientX));
+                                    scroller.scrollTop -=
+                                        newScrollY = (- lastClientY + (lastClientY = e.clientY));
+                                    if (el == _document.body) {
+                                        (scroller = _document.documentElement).scrollLeft -= newScrollX;
+                                        scroller.scrollTop -= newScrollY;
+                                    }
+                                }
+                            }, 0
+                        );
+                    })(dragged[i++]);
+                }
+            }
+
+
+            if (_document.readyState == 'complete') {
+                reset();
+            } else {
+                _window[addEventListener]('load', reset, 0);
+            }
+
+            exports.reset = reset;
+        }));
+
+
+    </script>
+    <script type="text/javascript">
+
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-20493372-1']);
+        _gaq.push(['_trackPageview']);
+
+        (function () {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+
+    </script>
+</body>
+</html>
+
+
+

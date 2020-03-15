@@ -1,0 +1,58 @@
+﻿@model MailRecipient
+@{
+    ViewBag.Title = "Email Club";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<main>
+    <div class="formflex">
+        <h2>Register</h2>
+        <P>
+            Sign up for special offers, new products, and more. Join our Email Club.
+        </P>
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-group">
+
+                @Html.ValidationSummary(true)
+
+
+
+                @Html.LabelFor(model => model.UserName)
+
+                @Html.EditorFor(model => model.UserName, new { htmlAttributes = new { @class = "input-control" } })
+                @Html.ValidationMessageFor(model => model.UserName)
+
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Email)
+
+                @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "input-control", @type = "email" } })
+                @Html.ValidationMessageFor(model => model.Email)
+
+            </div>
+
+            <div class="form-group">
+
+                <input type="submit" value="Sign Up" class="button" />
+
+            </div>
+
+        }
+
+        @section Menu {
+            <li class="toggle"><a href="#"><i class="fa fa-bars"></i> Menu</a></li>
+            <li class="item"><a asp-controller="Home" asp-action="Index">Home</a></li>
+            <li class="item"><a asp-controller="Home" asp-action="Bio">Bio</a></li>
+            <li class="item"><a asp-controller="Chinesepainting" asp-action="Index">Exhibits</a></li>
+            <li class="item"><a asp-controller="Home" asp-action="Info">Info</a></li>
+            <li class="item"><a asp-controller="Home" asp-action="Custom">Custom Art</a></li>
+            <li class="item"><a asp-controller="Home" asp-action="Contact">Contact</a></li>
+            <li class="item"><a asp-controller="Cart" asp-action="Index">Shopping Cart</a></li>
+        }
+</main>
+
+

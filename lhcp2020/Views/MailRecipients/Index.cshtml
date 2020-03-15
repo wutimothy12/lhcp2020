@@ -1,0 +1,129 @@
+﻿@model lhcp2020.Models.MailRecipientsViewModel
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+    <main>
+        <h2>Send Email to Selected Recipients</h2>
+        <p>
+            @Html.ActionLink("Create New", "Create")
+        </p>
+        @using (Html.BeginForm("SendMail", "MailRecipients", FormMethod.Post, new { encType = "multipart/form-data", name = "myform" }))
+        {
+            // Add a "Check All" checkbox above the table:
+            <div>
+                <input type="checkbox" id="checkall" /><span>Check All</span>
+            </div>
+
+            // Wrap the table in a named <div> so we can refer to it from JQuery:
+            <div id="checkboxes">
+                <table class="table">
+                    <tr>
+                        <th>
+                            @*This column will contain our checkboxes:*@
+                            Select
+                        </th>
+                        <th>
+                            @*This column will now hold a concatenation of the first/last names:*@
+                            UserName
+                        </th>
+                        <th>
+                            Email
+                        </th>
+                        <th></th>
+                    </tr>
+                    @* Our Table rows will be populated in the EditorTemplate: *@
+                    @Html.EditorFor(model => model.MailRecipients)
+                </table>
+            </div>
+            <hr />
+            <br />
+            <label for="mailsubjet">Subjet</label>
+            <input name="mailsubjet" id="mailsubjet" />
+            <hr />
+            <br />
+            <label for="textarea">textarea</label>
+            <textarea name="textarea" id="textarea"></textarea>
+
+            //Add a submit button to the bottom of the form:
+            <input type="submit" name="operation" id="email" value="Email Selected" />
+        }
+        <div id="divProcessing">
+            <p>Processing, please wait . . . <img src="~/images/ajax-loader.gif"></p>
+        </div>
+        @section Menu {
+            <li class="toggle"><a href="#"><i class="fa fa-bars"></i> Menu</a></li>
+            <li class="item"><a asp-controller="Home" asp-action="Index">Home</a></li>
+            <li class="item"><a asp-controller="Home" asp-action="Bio">Bio</a></li>
+            <li class="item"><a asp-controller="Chinesepainting" asp-action="Index">Exhibits</a></li>
+            <li class="item"><a asp-controller="Home" asp-action="Info">Info</a></li>
+            <li class="item"><a asp-controller="Home" asp-action="Custom">Custom Art</a></li>
+            <li class="item"><a asp-controller="Home" asp-action="Contact">Contact</a></li>
+            <li class="item"><a asp-controller="Cart" asp-action="Index">Shopping Cart</a></li>
+        }
+    </main>
+@section Scripts {
+
+    <script src="~/tinymce/tinymce.min.js"></script>
+    <script>
+        tinymce.init({
+            selector: 'textarea',
+            height: 500,
+            theme: 'modern',
+            plugins: [
+                'advlist autolink lists link image charmap print preview hr anchor pagebreak',
+                'searchreplace wordcount visualblocks visualchars code fullscreen',
+                'insertdatetime media nonbreaking save table contextmenu directionality',
+                'emoticons template paste textcolor colorpicker textpattern imagetools'
+            ],
+            toolbar1: 'insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image',
+            toolbar2: 'print preview media | forecolor backcolor emoticons',
+            image_advtab: true,
+            templates: [
+                { title: 'Test template 1', content: 'Test 1' },
+                { title: 'Test template 2', content: 'Test 2' }
+            ],
+            content_css: [
+                '//fonts.googleapis.com/css?family=Lato:300,300i,400,400i',
+                '//www.tinymce.com/css/codepen.min.css'
+            ]
+        });
+    </script>
+
+    <script type="text/javascript">
+
+        function toggleChecked(status) {
+            $("#checkboxes input").each(function () {
+                $(this).prop("checked", status);
+            });
+        }
+
+        $(document).ready(function () {
+
+            // Grab a reference to the checkall checkbox:
+            var checkAllBox = $("#checkall");
+            var divProcessing = $("#divProcessing");
+
+            // Hide the animated Gif when page loads:
+            divProcessing.hide();
+            checkAllBox.prop('checked', true);
+
+
+            // Attach a handler for the checkAllBox click event:
+            checkAllBox.click(function () {
+                var status = checkAllBox.prop('checked');
+                toggleChecked(status);
+            });
+
+            $('#email').click(function () {
+                // Required hack to get animated gif to run in IE:
+                setTimeout(function () {
+                    divProcessing.show();
+                }, 100);
+                $('myform').submit();
+            });
+        });
+    </script>
+}
+
+
