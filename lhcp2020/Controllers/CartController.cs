@@ -86,7 +86,7 @@ namespace lhcp2020.Controllers
         }
         public RedirectToActionResult Promotion(string Code)
         {
-            if (Code != "438645669")
+            if (Code != "xxx")
                 ModelState.AddModelError("code", "No promotion has this coupon code. Please try again.");
             if (!ModelState.IsValid)
             {
