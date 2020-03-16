@@ -68,7 +68,7 @@ namespace lhcp2020.Controllers
                     {
                         emailClient.Connect("lhchinesepaintings.com", 587, SecureSocketOptions.None);
                         emailClient.AuthenticationMechanisms.Remove("XOAUTH2");
-                        emailClient.Authenticate("timothy.wu@lhchinesepaintings.com", "goDman0o712!");
+                        emailClient.Authenticate("timothy.wu@lhchinesepaintings.com","xxx");
                         emailClient.Send(message);
                         emailClient.Disconnect(true);
                     }

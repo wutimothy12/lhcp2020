@@ -28,7 +28,7 @@ namespace lhcp2020.Models
                 //client.LocalDomain = "some.domain.com";
                 client.Connect("lhchinesepaintings.com", 587, SecureSocketOptions.None);
                 client.AuthenticationMechanisms.Remove("XOAUTH2");
-                client.Authenticate("timothy.wu@lhchinesepaintings.com", "goDman0o712!");
+                client.Authenticate("timothy.wu@lhchinesepaintings.com", "xxx");
                 client.Send(emailMessage);
                 client.Disconnect(true);
             }
