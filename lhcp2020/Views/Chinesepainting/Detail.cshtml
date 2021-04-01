@@ -16,19 +16,27 @@
 </head>
 <style>
     .lhbutton {
-    background-color: #CCC;
-    border: none;
-    color: white;
-    padding: 10px 15px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 1em;
-    border-radius: 8px;
-    margin-top: 5px;
-    cursor: pointer;
-}
-       
+        background-color: /*#CCC*/ #969698;
+        border: none;
+        color: white;
+        padding: 10px 15px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 1em;
+        border-radius: 8px;
+        margin-top: 5px;
+        cursor: pointer;
+    }
+        #rturl a:link {
+            color: white !important;
+            font-weight: normal;
+            text-decoration: none;
+        }
+
+        #rturl a:visited {
+            color: white !important;
+        }      
 </style>
 <body>
     <div id="top">
@@ -84,6 +92,7 @@
                             <li><a asp-controller="Chinesepainting" asp-action="byname" asp-route-name="Fish">Fish</a></li>
                             <li><a asp-controller="Chinesepainting" asp-action="byname" asp-route-name="Rooster">Rooster</a></li>
                             <li><a asp-controller="Chinesepainting" asp-action="byname" asp-route-name="Duck">Duck</a></li>
+                            <li><a asp-controller="Chinesepainting" asp-action="byname" asp-route-name="Horse">Horse</a></li>
                             <li><a asp-controller="Chinesepainting" asp-action="byname" asp-route-name="Eagle">Eagle</a></li>
                             <li><a asp-controller="Chinesepainting" asp-action="byname" asp-route-name="Rabbit">Rabbit</a></li>
                             <li><a asp-controller="Chinesepainting" asp-action="byname" asp-route-name="Frog">Frog</a></li>
@@ -136,9 +145,19 @@
                       asp-controller="Cart" method="post">
                     <input type="hidden" asp-for="ProductID" />
                     <input type="hidden" name="returnUrl"
-                           value="@ViewContext.HttpContext.Request.PathAndQuery()" />
+                           value=@ViewBag.Rturl />
                     <button type="submit" class="lhbutton">+ AddToCart</button>
                 </form>
+            </p>
+            <p id="rturl">
+                @if (ViewBag.Rturl != null)
+                {
+                    <a href="@ViewBag.Rturl" class="lhbutton">CONTINUE SHOPPING</a>
+                }
+                else
+                {
+                    <a asp-controller="Chinesepainting" asp-action="Index" class="lhbutton">CONTINUE SHOPPING</a>
+                }
             </p>
         </aside>
     </main>

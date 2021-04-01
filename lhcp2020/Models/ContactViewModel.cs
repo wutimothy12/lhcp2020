@@ -18,7 +18,8 @@ namespace lhcp2020.Models
         public string Subject { get; set; }
         [Required]
         public string Message { get; set; }
-        [Required(ErrorMessage = "select any one option")]
+        [Required(ErrorMessage = " Please select any one option")]
         public string Emaillist { get; set; }
+
     }
 }

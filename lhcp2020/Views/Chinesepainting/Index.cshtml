@@ -92,6 +92,9 @@
                 margin-bottom: 1em;
             }
         </style>
+        @{ 
+            TempData["rturl"] = ViewContext.HttpContext.Request.PathAndQuery();
+        }
 
     </main>
     <nav>
@@ -142,6 +145,7 @@
                             <li><a asp-controller="Chinesepainting" asp-action="byname" asp-route-name="Fish">Fish</a></li>
                             <li><a asp-controller="Chinesepainting" asp-action="byname" asp-route-name="Rooster">Rooster</a></li>
                             <li><a asp-controller="Chinesepainting" asp-action="byname" asp-route-name="Duck">Duck</a></li>
+                            <li><a asp-controller="Chinesepainting" asp-action="byname" asp-route-name="Horse">Horse</a></li>
                             <li><a asp-controller="Chinesepainting" asp-action="byname" asp-route-name="Eagle">Eagle</a></li>
                             <li><a asp-controller="Chinesepainting" asp-action="byname" asp-route-name="Rabbit">Rabbit</a></li>
                             <li><a asp-controller="Chinesepainting" asp-action="byname" asp-route-name="Frog">Frog</a></li>

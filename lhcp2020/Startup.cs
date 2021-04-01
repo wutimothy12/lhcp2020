@@ -10,6 +10,7 @@ using lhcp2020.Models;
 using Microsoft.Extensions.Configuration;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
+using AspNetCore.Honeypot;
 
 namespace lhcp2020
 {
@@ -42,6 +43,10 @@ namespace lhcp2020
             services.AddSession();
             services.AddTransient<IEmailService, EmailService>();
             services.AddScoped<IRazorViewToStringRenderer, RazorViewToStringRenderer>();
+            services.AddHoneypot();
+
+            var mailConfiguration = Configuration.GetSection("MailConfiguration");
+            services.Configure<MailConfiguration>(mailConfiguration);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

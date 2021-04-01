@@ -9,6 +9,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
 using System.Net;
 using System.Text.RegularExpressions;
+using AspNetCore.Honeypot;
+using Microsoft.Extensions.Options;
 
 namespace lhcp2020.Controllers
 {
@@ -19,12 +21,14 @@ namespace lhcp2020.Controllers
         private readonly IRazorViewToStringRenderer _razorViewToStringRenderer;
         string message;
         string subjet;
+        private readonly IOptions<MailConfiguration> mailConfiguration;
 
-        public MailRecipientsController(AppIdentityDbContext context, IEmailService email, IRazorViewToStringRenderer razorViewToStringRenderer)
+        public MailRecipientsController(AppIdentityDbContext context, IEmailService email, IRazorViewToStringRenderer razorViewToStringRenderer, IOptions<MailConfiguration> mailConfiguration)
         {
             db = context;
             emailService = email;
             _razorViewToStringRenderer = razorViewToStringRenderer;
+            this.mailConfiguration = mailConfiguration;
         }
 
 
@@ -74,11 +78,15 @@ namespace lhcp2020.Controllers
             return View();
         }
 
-
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Create([Bind("UserName,Email")] MailRecipient mailrecipient)
         {
+            if (HttpContext.IsHoneypotTrapped())
+            {
+                return RedirectToAction("Success");
+            }
+
             if (ModelState.IsValid)
             {
                 db.MailRecipients.Add(mailrecipient);
@@ -90,11 +98,17 @@ namespace lhcp2020.Controllers
                 return RedirectToAction("Thank");
             }
 
+            TempData["Anchor"] = "jump";
             return View(mailrecipient);
         }
-        public ActionResult Thank()
+        public ActionResult Success()
         {
           return View();
+        }
+
+        public ActionResult Thank()
+        {
+            return View();
         }
 
         [Authorize]
@@ -175,7 +189,7 @@ namespace lhcp2020.Controllers
             var messageContainers = this.createRecipientMailMessages(selectedMailRecipients);
 
             // Send the mail:
-            var sender = new MailSender();
+            var sender = new MailSender(mailConfiguration);
             sender.SendMail(messageContainers);
 
             // Reload the index form:

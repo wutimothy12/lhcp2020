@@ -2,18 +2,39 @@
     ViewBag.Title = "Error Message";
 }
 
-<main>
-    <h2>Error Message</h2>
-    <p>
-        Please See Below For Details:
-    </p>
-    <p>
-        Each of our paintings is a <strong>one of a kind original</strong>.
-        If you are interested in obtaining additional or similar pieces, you may place
-        a <strong>custom order</strong>.
-    </p>
-    <p><a asp-controller="Cart" asp-action="Index">Back to Cart</a></p>
-</main>
+    <main>
+        <h2>Sorry This Painting is <span style="color:red;">Sold</span></h2>
+        <p>
+            Please See Below For Details:
+        </p>
+        <p>
+            Each of our paintings is a <strong>one of a kind original</strong>.
+            If you are interested in obtaining additional or similar pieces, you may place
+            a <strong><a asp-controller="Home" asp-action="Info" asp-fragment="cp7">custom order</a></strong>.
+        </p>
+        <p class="rturl"><a asp-controller="Cart" asp-action="Index" class="button">Back to Cart</a></p>
+        <p class="rturl">
+            @if (ViewBag.Rturl != null)
+            {
+                <a href="@ViewBag.Rturl" class="button">CONTINUE SHOPPING</a>
+            }
+            else
+            {
+                <a asp-controller="Chinesepainting" asp-action="Index" class="button">CONTINUE SHOPPING</a>
+            }
+        </p>
+        <style>
+            .rturl a:link {
+                color: white !important;
+                font-weight: normal;
+                text-decoration: none;
+            }
+
+            .rturl a:visited {
+                color: white !important;
+            }
+        </style>
+    </main>
 @section Menu {
     <li class="toggle"><a href="#"><i class="fa fa-bars"></i> Menu</a></li>
     <li class="item"><a asp-controller="Home" asp-action="Index">Home</a></li>

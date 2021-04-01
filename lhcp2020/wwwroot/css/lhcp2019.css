@@ -127,11 +127,12 @@ main {
 .form-group {
     display: flex;
     flex-direction: column;
-    margin-bottom:1em;
-   }
+    margin-bottom: 1em;
+    width: 50%;
+}
 
     .form-group label {
-        flex: none;
+        flexF: none;
         display: block;
         width: 125px;
         font-weight: bold;
@@ -543,7 +544,7 @@ main#infopage nav.colside {
 }
 
 .button {
-    background-color: #CCC;
+    background-color: /*#CCC*/ #969698;
     border: none;
     color: white;
     padding: 10px 15px;
@@ -611,5 +612,27 @@ main#infopage nav.colside {
     background: #fff;
     padding: 4px;
     border: 1px solid #a9a9a9;
+}
+
+.field-validation-error {
+    color: #f00;
+}
+
+.field-validation-valid {
+    display: none;
+}
+
+.input-validation-error {
+    border: 1px solid #f00;
+    background-color: #fee;
+}
+
+.validation-summary-errors {
+    font-weight: bold;
+    color: #f00;
+}
+
+.validation-summary-valid {
+    display: none;
 }
 

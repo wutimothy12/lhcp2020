@@ -18,6 +18,11 @@ namespace lhcp2020.Controllers
         }
         public IActionResult Detail(int id)
         {
+            if (TempData.ContainsKey("rturl"))
+            {
+                ViewBag.Rturl = TempData["rturl"] as string;
+            }
+
             var cp = lhcp.GetProduct(id);
             ViewBag.Title = "Chinese " + cp.ProductName.ToString() + " Painting";
             return View(cp);
@@ -28,7 +33,7 @@ namespace lhcp2020.Controllers
         {
             //var viewData = lhcp.GetProducts(page);
             ViewBag.Title = "All Paintings - LHChinesepaintings";
-            ViewData["MainText"] = "Chinese painting has become very popular in the western world, particularly the United States. Chinese painting is known for its beautiful landscapes and paintings of mammals, birds, and fish. In Chinese painting there are two basic techniques, ¡°meticulous¡± or Gong-bi and ¡°freehand¡± or Shui-mo. Meticulous is very detailed while freehand is more impressionistic. Most Chinese consider landscape paintings as the top example of Chinese art, and many westerners agree.";
+            ViewData["MainText"] = "Chinese painting has become very popular in the western world, particularly the United States. Chinese painting is known for its beautiful landscapes and paintings of mammals, birds, and fish. In Chinese painting there are two basic techniques, Meticulous or Gong-bi and freehand or Shui-mo. Meticulous is very detailed while freehand is more impressionistic. Most Chinese consider landscape paintings as the top example of Chinese art, and many westerners agree.";
             return View(new PaintingsListViewModel
             {
                 CPaintings = lhcp.GetProducts()

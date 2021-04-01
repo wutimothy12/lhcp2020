@@ -31,6 +31,8 @@ namespace lhcp2020.Controllers
             ChinesePainting product = repository.GetProducts()
                 .FirstOrDefault(p => p.ProductID == productId);
 
+            TempData["rturl"] = returnUrl;
+
             if (product.Status == "Sold")
                 return RedirectToAction("errormessage");
 
@@ -86,7 +88,7 @@ namespace lhcp2020.Controllers
         }
         public RedirectToActionResult Promotion(string Code)
         {
-            if (Code != "xxx")
+            if (Code != "438645669")
                 ModelState.AddModelError("code", "No promotion has this coupon code. Please try again.");
             if (!ModelState.IsValid)
             {
@@ -108,6 +110,10 @@ namespace lhcp2020.Controllers
 
         public ViewResult errormessage()
         {
+            if (TempData.ContainsKey("rturl"))
+            {
+                ViewBag.Rturl = TempData["rturl"] as string;
+            }
             return View();
         }
 

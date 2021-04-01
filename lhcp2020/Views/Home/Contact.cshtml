@@ -8,8 +8,8 @@
         padding: 1em;
         border: 1px solid #ccc;
         background: #f8f8f8;
-        display:block;
-        width:90%;
+        display: block;
+        width: 90%;
     }
 
     legend {
@@ -27,13 +27,20 @@
         width: 80%;
         padding: .8em;
     }
+
     textarea {
         width: 100%;
-  height: 150px;
-  padding: 12px 20px;
-  box-sizing: border-box;
-  vertical-align:top;
+        height: 150px;
+        padding: 12px 20px;
+        box-sizing: border-box;
+        vertical-align: top;
     }
+    .hpot {
+        position: fixed;
+        top: -500px;
+        left: -500px;
+    }
+   
 </style>
 <main>
     <h2>Contact</h2>
@@ -81,50 +88,61 @@
             <legend>LHChinesePaintings WebForm</legend>
 
             <p id="P1">To:</p>
-            <form method="post">
+            <form method="post"  autocomplete="off">
                 <p>
                     <label>
                         <input id="RadioButton1" type="radio" asp-for="Emaillist" value="sales@lhchinesepaintings.com" /><label for="RadioButton1">sales@lhchinesepaintings.com</label><br />
-                        <input id="RadioButton2" type="radio" asp-for="Emaillist" value="info@lhchinesepaintings.com" /><label for="RadioButton2">info@lhchinesepaintings.com</label></br>
+                        <input id="RadioButton2" type="radio" asp-for="Emaillist" value="info@lhchinesepaintings.com" /><label for="RadioButton2">info@lhchinesepaintings.com</label><br>
                         <input id="RadioButton3" type="radio" asp-for="Emaillist" value="customorder@lhchinesepaintings.com" /><label for="RadioButton3">customorder@lhchinesepaintings.com</label>
-                        <span asp-validation-for="Emaillist" style="color:red;"></span>
+                        <span asp-validation-for="Emaillist"></span>
 
                     </label>
                 </p>
                 <p>
                     <label asp-for="Name">Name:</label>
                     <input asp-for="Name" class="form-control" style="height:3em;width:15em;" />
-                    <span asp-validation-for="Name" class="text-muted"></span>
+                    <span asp-validation-for="Name"></span>
                 </p>
                 <p>
                     <label asp-for="Email">Email:</label>
                     <input asp-for="Email" class="form-control" style=" height: 3em; width: 15em;" />
-                    <span asp-validation-for="Email" class="text-muted"></span>
+                    <span asp-validation-for="Email"></span>
                 </p>
                 <p>
 
-                <p
+                <p>
                     <label asp-for="Subject">Subject:</label>
-                    <input asp-for="Subject" class="form-control" style="height:3em;width:15em;" />
-                    <span asp-validation-for="Subject" class="text-muted"></span>
+                    <input asp-for="Subject" class="form-control" style="        height: 3em;
+        width: 15em;" />
+                    <span asp-validation-for="Subject"></span>
                 </p>
                 <p>
-                  
+
                     <label asp-for="Message">Message:</label>
                     <textarea asp-for="Message" class="form-control"></textarea>
-                    <span asp-validation-for="Message" class="text-muted"></span>
+                    <span asp-validation-for="Message"></span>
                 </p>
+                <div class="hpot">
+                    <label>Please leave this field empty:</label>
+                    <honeypot name="duplicate-name"></honeypot>
+                </div>
                 <p id="jump">
                     <label>
                         <input type="submit" class="button" value="Send" />
                     </label>
                 </p>
                 <p>Status: @ViewBag.end</p>
+
+                @if (ViewBag.Message != null)
+                {
+                <p>Error Message:<span style="color:red;">@ViewBag.Message</span></p>
+                }
+
             </form>
         </fieldset>
-       
-    </div>
 
+    </div>
+   
 </main>
 @section Menu {
     <li class="toggle"><a href="#"><i class="fa fa-bars"></i> Menu</a></li>
@@ -137,7 +155,8 @@
     <li class="item"><a asp-controller="Cart" asp-action="Index">Shopping Cart</a></li>
 }
 @section Scripts {
-    @if (TempData["Anchor"] != null)
+
+   @if (TempData["Anchor"] != null)
     {
         <script>
             $(document).ready(function () {
